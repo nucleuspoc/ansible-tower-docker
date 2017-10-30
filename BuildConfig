@@ -1,0 +1,23 @@
+---
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "ansible-tower-docker" 
+spec:
+  runPolicy: "Serial" 
+  triggers: 
+    - type: "Generic"
+      generic:
+        secret: "tower123"
+        allowEnv: true
+  source: 
+    git:
+      uri: "https://github.com/nucleuspoc/ansible-tower-docker"
+  strategy: 
+    dockerStrategy:
+
+  output: 
+    to:
+      kind: "ImageStreamTag"
+      name: "ansible-tower-docker:latest"
+
